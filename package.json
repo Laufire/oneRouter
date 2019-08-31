@@ -1,0 +1,60 @@
+{
+  "name": "@laufire/one-router",
+  "version": "0.0.0",
+  "description": "A simple router for the One platform.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "jest --no-cache",
+    "lint": "eslint ./",
+    "build": "babel --presets es2015 -d ./dist ./src",
+    "dev": "node -e 'require(\"./dist/index.js\").main()'"
+  },
+  "engines": {
+    "node": ">=7.6"
+  },
+  "engineStrict": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Laufire/oneWebServer.git"
+  },
+  "keywords": [],
+  "author": "Laufire Technologies",
+  "license": "ISC",
+  "homepage": "https://github.com/Laufire/oneRouter",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^5.16.0",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
+    "regenerator-runtime": "^0.13.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
+    "collectCoverage": true,
+    "coverageDirectory": "./.jest-coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
+      }
+    }
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "@laufire/one": "0.0.2",
+    "@laufire/utils": "0.0.29"
+  }
+}

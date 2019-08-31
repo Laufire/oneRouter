@@ -5,36 +5,36 @@ import oneRouter from '../src';
 describe('oneRouter', () => {
 	const core = one();
 	const data = Symbol('someData');
-	const route = 'someRoute';
-	const payload = {
-		data, route,
+	const path = 'somePath';
+	const ctx = {
+		data, path,
 	};
 
-	test('the handler is decided based on the the payloads'
-	+ ' and is given the payload as its only argument', () => {
+	test('the handler is decided based on ctx.path'
+	+ ' and is given the context as its only argument', () => {
 		const mockRoute = jest.fn(() => ({}));
 
 		const config = {
 			routes: {
-				[route]: () => mockRoute,
+				[path]: () => mockRoute,
 			},
 		};
 
 		const router = oneRouter(config, core);
 
-		router(payload);
+		router({ ctx });
 
-		expect(mockRoute).toBeCalledWith(payload);
+		expect(mockRoute).toBeCalledWith({ ctx });
 	});
 
-	test('the last value of the object, returned by the route is'
+	test('the last value of the object, returned by the route handler is'
 	+ ' returned as the result', () => {
 		const firstValue = Symbol('firstValue');
 		const lastValue = Symbol('secondValue');
 
 		const config = {
 			routes: {
-				[route]: () => () => ({
+				[path]: () => () => ({
 					firstValue,
 					lastValue,
 				}),
@@ -42,7 +42,7 @@ describe('oneRouter', () => {
 		};
 
 		const router = oneRouter(config, core);
-		const result = router(payload);
+		const result = router({ ctx });
 
 		expect(result).toEqual(lastValue);
 	});
